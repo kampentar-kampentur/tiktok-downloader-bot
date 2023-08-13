@@ -9,9 +9,7 @@ const reg = /https?:\/\/(?:www\.)?tiktok\.com\/.*\/video\/.*|https?:\/\/tiktok\.
 
 const bot = new Telegraf(botKey)
 bot.on(message('text'), async (ctx) => {
-  console.log('index.js | 13 | ctx.message.text :', ctx.message.text);
   const matches = ctx.message.text.match(reg)
-  console.log('index.js | 15 | matches :', matches);
   if (matches && matches.length) {
     const url = matches[0]
     const videoData = await getOriginalTiktokVideoURL(url)
@@ -19,3 +17,7 @@ bot.on(message('text'), async (ctx) => {
   }
 })
 bot.launch()
+
+module.exports = {
+  bot
+}
